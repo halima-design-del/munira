@@ -1,0 +1,763 @@
+html
+<!DOCTYPE html>
+<html lang="so" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumtaaz Spices - Dhadhanka Rasmiga Ah</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                            accent: '#dc2626',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .spice-bg-pattern {
+            background-color: #78350f;
+            background-image: radial-gradient(rgba(251, 191, 36, 0.15) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        @keyframes pulse-gentle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        .animate-pulse-gentle {
+            animation: pulse-gentle 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-brand-50 text-stone-800 font-sans min-h-screen flex flex-col relative">
+
+    <!-- Floating WhatsApp Button -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+        <!-- Floating chat bubble label -->
+        <div class="bg-stone-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl shadow-lg border border-stone-800 hidden md:block animate-bounce">
+            WhatsApp nagala hadal! 👋
+        </div>
+        <!-- Main WhatsApp FAB -->
+        <a href="https://wa.me/254712345678?text=Asc%20Mumtaaz%20Spices%2C%20waxaan%20rabaa%20in%20aan%20wax%20idin%20waydiiyo." 
+           target="_blank" 
+           class="w-16 h-16 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 animate-pulse-gentle group relative"
+           aria-label="Kala xiriir WhatsApp">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+            <span class="absolute -top-1 -right-1 flex h-4 w-4">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500"></span>
+            </span>
+        </a>
+    </div>
+
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-100 shadow-sm transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white shadow-md shadow-brand-700/20 group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-mortar-pestle text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-bold tracking-tight text-brand-900 block font-serif">MUMTAAZ</span>
+                    <span class="text-xs tracking-widest text-brand-600 block -mt-15 font-extrabold">SPICES</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links (Desktop) -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-stone-600">
+                <a href="#home" class="hover:text-brand-600 transition-colors">Hordhac</a>
+                <a href="#about" class="hover:text-brand-600 transition-colors">Naga Dawo</a>
+                <a href="#products" class="hover:text-brand-600 transition-colors">Xawaashyada</a>
+                <a href="#contact" class="hover:text-brand-600 transition-colors">Nala Soo Xiriir</a>
+            </nav>
+
+            <!-- Cart Icon and Action Button -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCartModal()" class="relative p-2.5 rounded-full hover:bg-stone-100 transition-colors text-stone-700" aria-label="Kortada">
+                    <i class="fa-solid fa-shopping-basket text-2xl"></i>
+                    <span id="cart-badge" class="absolute top-0 right-0 w-5 h-5 bg-brand-accent text-white rounded-full text-xs flex items-center justify-center font-bold scale-0 transition-transform duration-300">0</span>
+                </button>
+                <a href="#products" class="hidden sm:inline-flex bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-full font-bold text-sm transition-colors shadow-md shadow-brand-600/15">
+                    Dalbo Hadda
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="home" class="relative overflow-hidden bg-gradient-to-b from-brand-100/60 via-white to-brand-50 py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Content -->
+                <div class="space-y-6 text-center md:text-left z-10">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-100 text-brand-900 text-xs font-extrabold tracking-wider uppercase">
+                        <i class="fa-solid fa-certificate text-brand-600"></i> 100% ORGANIG AH & SAFI AH
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-950 font-serif leading-tight">
+                        Ku Macaanee Cuntadaada <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-700 to-brand-500">Mumtaaz Spices</span>
+                    </h1>
+                    <p class="text-stone-600 text-base sm:text-lg max-w-lg mx-auto md:mx-0 leading-relaxed">
+                        Kordhi dhadhanka cuntadaada adoo isticmaalaya xawaashyada loogu talagalay digaagga iyo bariiska pilau-da. Carf iyo dhadhan aan marnaba la ilaawi karin!
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
+                        <a href="#products" class="inline-flex items-center justify-center bg-brand-600 hover:bg-brand-700 text-white px-8 py-3.5 rounded-full font-bold text-base transition-colors shadow-lg shadow-brand-600/20 gap-2 group">
+                            Arag Xawaashyada 
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#contact" class="inline-flex items-center justify-center bg-[#25D366] hover:bg-[#20ba5a] text-white px-8 py-3.5 rounded-full font-bold text-base transition-colors shadow-lg shadow-green-500/20 gap-2">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Toos noola hadal
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Elements -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-brand-200/50 max-w-md mx-auto md:mx-0">
+                        <div class="text-center md:text-left">
+                            <span class="block text-2xl font-black text-brand-900">120g</span>
+                            <span class="text-xs text-stone-500 font-medium">Miisaan Cad</span>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <span class="block text-2xl font-black text-brand-900">100%</span>
+                            <span class="text-xs text-stone-500 font-medium">Dabiici Ah</span>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <span class="block text-2xl font-black text-brand-900">Macaan</span>
+                            <span class="text-xs text-stone-500 font-medium">La Hubay</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content (Hero image) -->
+                <div class="relative flex justify-center items-center">
+                    <!-- Background blobs -->
+                    <div class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-brand-200/50 filter blur-3xl -z-10 animate-pulse"></div>
+                    
+                    <!-- Premium image with rounded corners and border -->
+                    <div class="relative w-full max-w-md aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white shadow-brand-900/10">
+                        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80" 
+                             alt="" 
+                             class="w-full h-full object-cover"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        
+                        <!-- Fallback inside if image fails to load -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-900 to-brand-800 p-8 text-white hidden flex-col justify-between spice-bg-pattern">
+                            <h3 class="text-3xl font-serif font-bold">Xawaashyada Mumtaaz Spices</h3>
+                            <p class="text-sm">Xawaashyo tayo leh oo la safeeyey.</p>
+                        </div>
+
+                        <!-- Floating Badge on Image -->
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-white/20 flex items-center justify-between shadow-lg">
+                            <div>
+                                <span class="text-xs font-extrabold text-brand-600 block uppercase tracking-wider">Kuugga Doorashadiisa</span>
+                                <span class="text-sm font-bold text-stone-900">Pilau & Chicken Masala</span>
+                            </div>
+                            <span class="bg-brand-600 text-white text-xs font-black px-3 py-1.5 rounded-lg">120g Xirmo</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- About section -->
+        <section id="about" class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
+                <span class="text-brand-600 font-bold tracking-wider text-xs uppercase">Maxaad u dooranaysaa Mumtaaz Spices?</span>
+                <h2 class="text-3xl font-bold font-serif text-brand-900">Nadaafad, Carf iyo Dhadhan Mideysan</h2>
+                <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                <p class="text-stone-600 text-lg leading-relaxed max-w-2xl mx-auto">
+                    Xawaashyadayadu ma aha oo kaliya kuwa cuntada carfiya, ee waa kuwa u yeela dhadhan dabiici ah oo soo jiidasho leh. Waxaan ka soo xulnaa meelaha ugu fiican annagoo hubina tayada, nadaafadda iyo miisaanka.
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8">
+                    <div class="p-6 rounded-2xl bg-brand-50/50 border border-brand-100 hover:shadow-lg hover:bg-brand-50 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mx-auto mb-4 text-2xl shadow-sm">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="font-bold text-stone-900 mb-2">100% Organic</h3>
+                        <p class="text-sm text-stone-600">Ma jiraan wax kiimiko ah oo lagu daray, gebi ahaanba waa dabiici.</p>
+                    </div>
+                    
+                    <div class="p-6 rounded-2xl bg-brand-50/50 border border-brand-100 hover:shadow-lg hover:bg-brand-50 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mx-auto mb-4 text-2xl shadow-sm">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h3 class="font-bold text-stone-900 mb-2">Nadaafad Sugan</h3>
+                        <p class="text-sm text-stone-600">Waxaa lagu farsameeyay qalab nadiif ah oo loo diyaariyay si taxaddar leh.</p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-brand-50/50 border border-brand-100 hover:shadow-lg hover:bg-brand-50 transition-all">
+                        <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mx-auto mb-4 text-2xl shadow-sm">
+                            <i class="fa-solid fa-truck"></i>
+                        </div>
+                        <h3 class="font-bold text-stone-900 mb-2">Gaarsiin Degdeg ah</h3>
+                        <p class="text-sm text-stone-600">Goob kasta oo aad joogto waxaan kuugu keenaynaa si dhakhso ah.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-16 bg-brand-50/40">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center max-w-xl mx-auto mb-12 space-y-3">
+                    <span class="text-brand-600 font-bold tracking-wider text-xs uppercase">Xawaashyada Ugu Caansan</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold font-serif text-stone-950">Xawaashyadayada Waa Laba Nooc</h2>
+                    <div class="w-16 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                    <p class="text-stone-600 text-sm sm:text-base">Xirmo kasta waa 120g oo ku diyaarsan baakado aad u qurux badan oo dhadhanka ilaaliya.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    
+                    <!-- Product 1: Pilau Masala -->
+                    <div class="bg-white rounded-3xl border border-brand-100 shadow-xl shadow-brand-900/5 overflow-hidden group flex flex-col hover:scale-[1.02] transition-all duration-300">
+                        <div class="relative h-64 overflow-hidden">
+                            <!-- Premium Spiced Pilaf Image -->
+                            <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=600&q=80" 
+                                 alt="" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
+                            
+                            <!-- Inside fallback text if image fails -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-amber-600 to-amber-800 p-6 text-white hidden flex-col justify-between">
+                                <span class="bg-white/20 text-xs px-2 py-1 rounded-full w-max">Best Seller</span>
+                                <h3 class="text-2xl font-bold">Pilau Masala</h3>
+                            </div>
+
+                            <div class="absolute top-4 left-4 z-10 flex gap-2">
+                                <span class="bg-brand-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Best Seller</span>
+                            </div>
+                            <div class="absolute top-4 right-4 z-10">
+                                <span class="bg-white text-stone-900 font-extrabold text-xs px-3 py-1.5 rounded-full shadow-md">120g</span>
+                            </div>
+
+                            <div class="absolute bottom-4 left-6 right-6 z-10">
+                                <h3 class="text-2xl font-bold font-serif text-white">Pilau Masala</h3>
+                                <p class="text-xs text-brand-200">Wuxuu bariiskaaga pilau u yeelaa caraf heer sare ah</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-grow flex flex-col justify-between space-y-6">
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Xawaashkan gaarka ah wuxuu ka kooban yahay geedo caraf udgoon oo si fiican loo isku daray si uu bariiskaaga Pilau-da uga dhigo mid u carfa sida guryihii boqortooyada.
+                            </p>
+                            <div class="flex items-center justify-between pt-2 border-t border-stone-100">
+                                <div>
+                                    <span class="text-xs text-stone-400 block uppercase font-bold">Qiimaha</span>
+                                    <span class="text-2xl font-black text-brand-900 font-sans">240 <span class="text-sm font-semibold text-stone-500">Ksh</span></span>
+                                </div>
+                                
+                                <!-- Quantity Selector -->
+                                <div class="flex items-center border border-stone-200 rounded-full bg-stone-50">
+                                    <button onclick="changeQty('pilau', -1)" class="w-10 h-10 flex items-center justify-center text-stone-600 hover:text-brand-600 font-bold" aria-label="Yaree">-</button>
+                                    <span id="qty-pilau" class="w-8 text-center font-bold text-stone-800">1</span>
+                                    <button onclick="changeQty('pilau', 1)" class="w-10 h-10 flex items-center justify-center text-stone-600 hover:text-brand-600 font-bold" aria-label="Kordhi">+</button>
+                                </div>
+                            </div>
+                            <button onclick="addToCart('pilau')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-2xl transition-all flex items-center justify-center gap-2 shadow-md shadow-brand-600/15">
+                                <i class="fa-solid fa-cart-plus"></i> Ku dar Kortada
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2: Chicken Masala -->
+                    <div class="bg-white rounded-3xl border border-brand-100 shadow-xl shadow-brand-900/5 overflow-hidden group flex flex-col hover:scale-[1.02] transition-all duration-300">
+                        <div class="relative h-64 overflow-hidden">
+                            <!-- Premium Roasted Chicken Image -->
+                            <img src="https://images.unsplash.com/photo-1598515214211-89d3e73ae83b?auto=format&fit=crop&w=600&q=80" 
+                                 alt="" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
+                            
+                            <!-- Inside fallback text if image fails -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-orange-600 to-red-800 p-6 text-white hidden flex-col justify-between">
+                                <span class="bg-white/20 text-xs px-2 py-1 rounded-full w-max">Premium Quality</span>
+                                <h3 class="text-2xl font-bold">Chicken Masala</h3>
+                            </div>
+
+                            <div class="absolute top-4 left-4 z-10 flex gap-2">
+                                <span class="bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md">Premium</span>
+                            </div>
+                            <div class="absolute top-4 right-4 z-10">
+                                <span class="bg-white text-stone-900 font-extrabold text-xs px-3 py-1.5 rounded-full shadow-md">120g</span>
+                            </div>
+
+                            <div class="absolute bottom-4 left-6 right-6 z-10">
+                                <h3 class="text-2xl font-bold font-serif text-white">Chicken Masala</h3>
+                                <p class="text-xs text-brand-200">Dhadhanka rasmiga ah ee hilibka digaagga</p>
+                            </div>
+                        </div>
+
+                        <div class="p-6 flex-grow flex flex-col justify-between space-y-6">
+                            <p class="text-stone-600 text-sm leading-relaxed">
+                                Ka yeel digaaggaaga (hilibka cad) mid aad u casiir badan oo dhadhan aan la ilaabi karin leh. Waxaa ku jira maaddooyin dabiici ah oo kor u qaadaya nafaqada cuntada.
+                            </p>
+                            <div class="flex items-center justify-between pt-2 border-t border-stone-100">
+                                <div>
+                                    <span class="text-xs text-stone-400 block uppercase font-bold">Qiimaha</span>
+                                    <span class="text-2xl font-black text-brand-900 font-sans">230 <span class="text-sm font-semibold text-stone-500">Ksh</span></span>
+                                </div>
+                                
+                                <!-- Quantity Selector -->
+                                <div class="flex items-center border border-stone-200 rounded-full bg-stone-50">
+                                    <button onclick="changeQty('chicken', -1)" class="w-10 h-10 flex items-center justify-center text-stone-600 hover:text-brand-600 font-bold" aria-label="Yaree">-</button>
+                                    <span id="qty-chicken" class="w-8 text-center font-bold text-stone-800">1</span>
+                                    <button onclick="changeQty('chicken', 1)" class="w-10 h-10 flex items-center justify-center text-stone-600 hover:text-brand-600 font-bold" aria-label="Kordhi">+</button>
+                                </div>
+                            </div>
+                            <button onclick="addToCart('chicken')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 rounded-2xl transition-all flex items-center justify-center gap-2 shadow-md shadow-brand-600/15">
+                                <i class="fa-solid fa-cart-plus"></i> Ku dar Kortada
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Order / Checkout Section with Form -->
+        <section id="contact" class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="bg-gradient-to-br from-brand-900 to-amber-950 rounded-[2.5rem] text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden spice-bg-pattern border border-brand-800">
+                    
+                    <div class="relative z-10 max-w-2xl mx-auto text-center space-y-4 mb-10">
+                        <h2 class="text-3xl font-extrabold font-serif">Foomka Dalbashada Degdegga Ah</h2>
+                        <p class="text-brand-200 text-sm">Buuxi foomkan si aad dalabkaaga toos ugu dirto WhatsApp-keena, anaguna aan kuugu keenno meel kasta oo aad joogto.</p>
+                    </div>
+
+                    <!-- Checkout Form -->
+                    <div class="relative z-10 max-w-lg mx-auto bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 space-y-6">
+                        <!-- Summary inside checkout -->
+                        <div class="bg-white/5 rounded-2xl p-4 border border-white/5">
+                            <h3 class="font-bold text-brand-300 text-sm uppercase tracking-wider mb-3">Dalabkaaga Hadda:</h3>
+                            <div class="space-y-2 text-sm text-brand-100">
+                                <div class="flex justify-between">
+                                    <span>Pilau Masala:</span>
+                                    <span id="summary-pilau">0 pack(s) - 0 Ksh</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Chicken Masala:</span>
+                                    <span id="summary-chicken">0 pack(s) - 0 Ksh</span>
+                                </div>
+                                <div class="border-t border-white/10 pt-2 flex justify-between font-bold text-white text-base">
+                                    <span>Qiimaha Guud:</span>
+                                    <span id="summary-total">0 Ksh</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fields -->
+                        <div class="space-y-4 text-stone-800">
+                            <div>
+                                <label for="fullname" class="block text-xs font-bold text-brand-200 uppercase tracking-wider mb-1">Magacaaga oo Buuxa</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
+                                        <i class="fa-regular fa-user"></i>
+                                    </span>
+                                    <input type="text" id="fullname" placeholder="Tusaale: Maxamed Cali" class="w-full bg-white border border-stone-200 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-xs font-bold text-brand-200 uppercase tracking-wider mb-1">Lambarka Telefoonka</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </span>
+                                    <input type="tel" id="phone" placeholder="Tusaale: +2547172229122" class="w-full bg-white border border-stone-200 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="location" class="block text-xs font-bold text-brand-200 uppercase tracking-wider mb-1">Goobta Laguugu Keenayo (Address)</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </span>
+                                    <input type="text" id="location" placeholder="Tusaale: Eastleigh, Nairobi" class="w-full bg-white border border-stone-200 rounded-xl py-3 pl-10 pr-4 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-sm">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="notes" class="block text-xs font-bold text-brand-200 uppercase tracking-wider mb-1">Farriin ama Faahfaahin dheeri ah (Optional)</label>
+                                <textarea id="notes" rows="2" placeholder="Halkaan ku qor haddii aad hayso fariin kale..." class="w-full bg-white border border-stone-200 rounded-xl py-3 px-4 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-sm"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button onclick="sendToWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#20ba5a] text-white font-extrabold py-4 rounded-xl transition-all shadow-lg hover:shadow-[#25D366]/20 flex items-center justify-center gap-3 text-base">
+                            <i class="fa-brands fa-whatsapp text-2xl animate-pulse"></i> Toos ugu Dalbo WhatsApp
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 border-t border-stone-800 py-12">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Col 1: Brand Info -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-brand-600 flex items-center justify-center text-white">
+                        <i class="fa-solid fa-mortar-pestle"></i>
+                    </div>
+                    <span class="text-lg font-bold font-serif text-white tracking-wider">MUMTAAZ SPICES</span>
+                </div>
+                <p class="text-sm leading-relaxed text-stone-400">
+                    Waxaan u taagannahay bixinta xawaashyada ugu tayada sarreeya, kuwaas oo cuntadaada u yeelaya caraf iyo dhadhan heersare ah oo caafimaad leh.
+                </p>
+            </div>
+
+            <!-- Col 2: Quick Links -->
+            <div>
+                <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-4 border-brand-500 pl-3">Xiriir Degdeg Ah</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#home" class="hover:text-white transition-colors">Hordhac</a></li>
+                    <li><a href="#about" class="hover:text-white transition-colors">Naga Dawo</a></li>
+                    <li><a href="#products" class="hover:text-white transition-colors">Xawaashyada</a></li>
+                    <li><a href="#contact" class="hover:text-white transition-colors">Foomka Dalbashada</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Contact details -->
+            <div class="space-y-3 text-sm">
+                <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 border-l-4 border-brand-500 pl-3">Macluumaadka Nala Xiriirka</h4>
+                <p class="flex items-center gap-3">
+                    <i class="fa-solid fa-location-dot text-brand-500"></i>
+                    <span>Nairobi, Kenya</span>
+                </p>
+                <p class="flex items-center gap-3">
+                    <i class="fa-solid fa-phone text-brand-500"></i>
+                    <span>+254717229122</span>
+                </p>
+                <p class="flex items-center gap-3">
+                    <i class="fa-solid fa-envelope text-brand-500"></i>
+                    <span>info@mumtaazspices.com</span>
+                </p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 mt-8 pt-8 border-t border-stone-800 text-center text-xs text-stone-500">
+            <p>&copy; 2026 Mumtaaz Spices. Xuquuqda oo dhan waa ilaashan tahay.</p>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal / Drawer -->
+    <div id="cart-modal" class="fixed inset-0 z-50 overflow-hidden hidden" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-stone-900/60 backdrop-blur-xs transition-opacity" onclick="toggleCartModal()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between transform transition-transform duration-500">
+                
+                <!-- Modal Header -->
+                <div class="px-6 py-5 border-b border-stone-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-shopping-basket text-brand-600 text-xl"></i>
+                        <h2 class="text-lg font-bold text-stone-900 font-serif">Kortada Dalabkaaga</h2>
+                    </div>
+                    <button onclick="toggleCartModal()" class="text-stone-400 hover:text-stone-500 p-1" aria-label="Xidh">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Body (Cart Items) -->
+                <div class="p-6 overflow-y-auto flex-grow space-y-4">
+                    <div id="cart-empty-state" class="text-center py-12 space-y-4">
+                        <div class="w-16 h-16 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center mx-auto text-2xl">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </div>
+                        <p class="text-stone-500 font-medium">Kortadaadu hadda waa maran tahay!</p>
+                        <button onclick="toggleCartModal()" class="text-brand-600 font-bold text-sm underline hover:text-brand-700">Sii wad wax iibsiga</button>
+                    </div>
+
+                    <!-- Selected items list -->
+                    <div id="cart-items-container" class="space-y-4 hidden">
+                        <!-- Pilau card -->
+                        <div id="cart-card-pilau" class="flex items-center justify-between p-4 rounded-2xl bg-stone-50 border border-stone-200 hidden">
+                            <div>
+                                <h4 class="font-bold text-stone-900 font-serif">Pilau Masala</h4>
+                                <span class="text-xs text-stone-500 block">120g • 240 Ksh</span>
+                                <span id="cart-subtotal-pilau" class="text-sm font-extrabold text-brand-800 block mt-1">240 Ksh</span>
+                            </div>
+                            <div class="flex items-center border border-stone-200 rounded-full bg-white">
+                                <button onclick="changeQty('pilau', -1)" class="w-8 h-8 flex items-center justify-center text-stone-600 font-bold">-</button>
+                                <span id="cart-qty-pilau" class="w-6 text-center font-bold text-stone-800 text-sm">0</span>
+                                <button onclick="changeQty('pilau', 1)" class="w-8 h-8 flex items-center justify-center text-stone-600 font-bold">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Chicken card -->
+                        <div id="cart-card-chicken" class="flex items-center justify-between p-4 rounded-2xl bg-stone-50 border border-stone-200 hidden">
+                            <div>
+                                <h4 class="font-bold text-stone-900 font-serif">Chicken Masala</h4>
+                                <span class="text-xs text-stone-500 block">120g • 230 Ksh</span>
+                                <span id="cart-subtotal-chicken" class="text-sm font-extrabold text-brand-800 block mt-1">230 Ksh</span>
+                            </div>
+                            <div class="flex items-center border border-stone-200 rounded-full bg-white">
+                                <button onclick="changeQty('chicken', -1)" class="w-8 h-8 flex items-center justify-center text-stone-600 font-bold">-</button>
+                                <span id="cart-qty-chicken" class="w-6 text-center font-bold text-stone-800 text-sm">0</span>
+                                <button onclick="changeQty('chicken', 1)" class="w-8 h-8 flex items-center justify-center text-stone-600 font-bold">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div id="cart-footer" class="border-t border-stone-100 p-6 space-y-4 hidden">
+                    <div class="flex justify-between items-center text-base font-bold text-stone-900">
+                        <span>Qiimaha Guud:</span>
+                        <span id="cart-total-price" class="text-xl text-brand-900 font-black">0 Ksh</span>
+                    </div>
+                    <button onclick="proceedToCheckout()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-2xl transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-600/15">
+                        U Gudub Dalbashada
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification/Message Box -->
+    <div id="toast-message" class="fixed bottom-6 left-6 z-50 bg-stone-900 text-white px-6 py-4 rounded-2xl shadow-xl flex items-center gap-3 max-w-sm border border-stone-800 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <span id="toast-icon" class="text-brand-500 text-lg"><i class="fa-solid fa-circle-check"></i></span>
+        <span id="toast-text" class="text-sm font-medium">Alaabta waa lagu daray kortada!</span>
+    </div>
+
+    <!-- Interactive JS code -->
+    <script>
+        // State management
+        const prices = {
+            pilau: 240,
+            chicken: 230
+        };
+        
+        let cart = {
+            pilau: 0,
+            chicken: 0
+        };
+
+        // UI quantities on cards
+        let currentQty = {
+            pilau: 1,
+            chicken: 1
+        };
+
+        // Initialize UI values
+        updateUI();
+
+        function changeQty(product, val) {
+            const isModalOpen = !document.getElementById('cart-modal').classList.contains('hidden');
+            
+            if (isModalOpen) {
+                // Changing from within the sidebar cart
+                if (cart[product] + val >= 0) {
+                    cart[product] += val;
+                    updateUI();
+                }
+            } else {
+                // Changing from the main product grid cards
+                if (currentQty[product] + val >= 1) {
+                    currentQty[product] += val;
+                    document.getElementById(`qty-${product}`).textContent = currentQty[product];
+                }
+            }
+        }
+
+        function addToCart(product) {
+            const qty = currentQty[product];
+            cart[product] += qty;
+            
+            // Reset card quantity selector back to 1
+            currentQty[product] = 1;
+            document.getElementById(`qty-${product}`).textContent = "1";
+
+            updateUI();
+            showToast(`${product === 'pilau' ? 'Pilau Masala' : 'Chicken Masala'} (${qty} xirmo) waa lagu daray kortada!`);
+        }
+
+        function updateUI() {
+            // Update item counters inside the cart modal
+            document.getElementById('cart-qty-pilau').textContent = cart.pilau;
+            document.getElementById('cart-qty-chicken').textContent = cart.chicken;
+
+            // Calculate subtotals
+            const subtotalPilau = cart.pilau * prices.pilau;
+            const subtotalChicken = cart.chicken * prices.chicken;
+            const grandTotal = subtotalPilau + subtotalChicken;
+
+            document.getElementById('cart-subtotal-pilau').textContent = `${subtotalPilau} Ksh`;
+            document.getElementById('cart-subtotal-chicken').textContent = `${subtotalChicken} Ksh`;
+            document.getElementById('cart-total-price').textContent = `${grandTotal} Ksh`;
+
+            // Update checkout form summaries
+            document.getElementById('summary-pilau').textContent = `${cart.pilau} pack(s) - ${subtotalPilau} Ksh`;
+            document.getElementById('summary-chicken').textContent = `${cart.chicken} pack(s) - ${subtotalChicken} Ksh`;
+            document.getElementById('summary-total').textContent = `${grandTotal} Ksh`;
+
+            // Badge updates
+            const totalItems = cart.pilau + cart.chicken;
+            const badge = document.getElementById('cart-badge');
+            if (totalItems > 0) {
+                badge.textContent = totalItems;
+                badge.classList.remove('scale-0');
+                badge.classList.add('scale-100');
+            } else {
+                badge.classList.remove('scale-100');
+                badge.classList.add('scale-0');
+            }
+
+            // Show/Hide sections
+            const emptyState = document.getElementById('cart-empty-state');
+            const itemsContainer = document.getElementById('cart-items-container');
+            const footer = document.getElementById('cart-footer');
+            const cardPilau = document.getElementById('cart-card-pilau');
+            const cardChicken = document.getElementById('cart-card-chicken');
+
+            if (totalItems > 0) {
+                emptyState.classList.add('hidden');
+                itemsContainer.classList.remove('hidden');
+                footer.classList.remove('hidden');
+
+                if (cart.pilau > 0) {
+                    cardPilau.classList.remove('hidden');
+                } else {
+                    cardPilau.classList.add('hidden');
+                }
+
+                if (cart.chicken > 0) {
+                    cardChicken.classList.remove('hidden');
+                } else {
+                    cardChicken.classList.add('hidden');
+                }
+            } else {
+                emptyState.classList.remove('hidden');
+                itemsContainer.classList.add('hidden');
+                footer.classList.add('hidden');
+            }
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function proceedToCheckout() {
+            toggleCartModal();
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast-message');
+            const text = document.getElementById('toast-text');
+            const icon = document.getElementById('toast-icon');
+
+            text.textContent = message;
+            if (isError) {
+                icon.innerHTML = `<i class="fa-solid fa-circle-exclamation text-red-500"></i>`;
+            } else {
+                icon.innerHTML = `<i class="fa-solid fa-circle-check text-green-500"></i>`;
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 4000);
+        }
+
+        // Send Order to WhatsApp
+        function sendToWhatsApp() {
+            const name = document.getElementById('fullname').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const location = document.getElementById('location').value.trim();
+            const notes = document.getElementById('notes').value.trim();
+
+            const totalItems = cart.pilau + cart.chicken;
+
+            if (totalItems === 0) {
+                showToast("Fadlan ku dar ugu yaraan hal xawaash kortada ka hor inta aadan dalban!", true);
+                return;
+            }
+            if (!name) {
+                showToast("Fadlan geli magacaaga!", true);
+                return;
+            }
+            if (!phone) {
+                showToast("Fadlan geli lambarkaaga telefoonka!", true);
+                return;
+            }
+            if (!location) {
+                showToast("Fadlan geli meesha laguugu keenayo!", true);
+                return;
+            }
+
+            const subtotalPilau = cart.pilau * prices.pilau;
+            const subtotalChicken = cart.chicken * prices.chicken;
+            const grandTotal = subtotalPilau + subtotalChicken;
+
+            let message = `*MUMTAAZ SPICES - DALAB CUSUB*\n`;
+            message += `--------------------------------------\n`;
+            message += `*Macluumaadka Macmiilka:*\n`;
+            message += `👤 *Magaca:* ${name}\n`;
+            message += `📞 *Tel:* ${phone}\n`;
+            message += `📍 *Goobta:* ${location}\n`;
+            if (notes) {
+                message += `📝 *Farriin dheeri ah:* ${notes}\n`;
+            }
+            message += `--------------------------------------\n`;
+            message += `*Xawaashyada la Dalbaday:*\n`;
+            if (cart.pilau > 0) {
+                message += `• *Pilau Masala (120g):* ${cart.pilau} xirmo x 240 Ksh = ${subtotalPilau} Ksh\n`;
+            }
+            if (cart.chicken > 0) {
+                message += `• *Chicken Masala (120g):* ${cart.chicken} xirmo x 230 Ksh = ${subtotalChicken} Ksh\n`;
+            }
+            message += `--------------------------------------\n`;
+            message += `💰 *QIIMAHA GUUD (TOTAL):* *${grandTotal} Ksh*\n`;
+            message += `--------------------------------------\n`;
+            message += `*Fadlan ii xaqiiji dalabkayga.*`;
+
+            // WhatsApp Business Link Setup
+            const whatsappNumber = "254717229122"; // Halkan ku bedelo lambarkaaga rasmiga ah ee WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
